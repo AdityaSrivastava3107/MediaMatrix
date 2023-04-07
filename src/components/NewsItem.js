@@ -5,7 +5,7 @@ export class NewsList extends Component {
     let  {title, description, imgurl, Link} = this.props
     return (
       <div className = "my-3">
-        <div className="card" style={{width: "18rem"}}>
+        <div className="card">
         <img src= {!imgurl? "https://www.shutterstock.com/image-vector/background-screen-saver-on-breaking-260nw-1538146961.jpg" : imgurl} className="card-img-top" alt="..."/>
         <div className="card-body">
           <h5 className="card-title">{title}...</h5>
