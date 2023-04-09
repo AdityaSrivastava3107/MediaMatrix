@@ -31,7 +31,7 @@ export class News extends Component {
   }
   async updateNews() {
     this.props.setProgress(10)
-    const url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=02e342880cbe4c5b8b4705fa883b45d3&page=${this.state.page}&pageSize=${this.props.pageSize}`;
+    const url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.props.apiKey}&page=${this.state.page}&pageSize=${this.props.pageSize}`;
     this.setState({ loading: true });
     let data = await fetch(url);
     let parsedData = await data.json()
@@ -42,23 +42,15 @@ export class News extends Component {
     })
     this.props.setProgress(100)
   }
+
   async componentDidMount() {
     this.updateNews()
   }
 
-  handlepreviousClick = async () => {
-    this.setState({ page: this.state.page - 1 });
-    this.updateNews()
-  }
-
-  handlenextClick = async () => {
-    this.setState({ page: this.state.page + 1 });
-    this.updateNews()
-  }
 
   fetchMoreData = async () => {
     this.setState({ page: this.state.page + 1 });
-    const url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=02e342880cbe4c5b8b4705fa883b45d3&page=${this.state.page}&pageSize=${this.props.pageSize}`;
+    const url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.props.apiKey}&page=${this.state.page}&pageSize=${this.props.pageSize}`;
     this.setState({ loading: true });
     let data = await fetch(url);
     let parsedData = await data.json()
@@ -78,7 +70,7 @@ export class News extends Component {
           dataLength={this.state.articles.length}
           next={this.fetchMoreData}
           hasMore={this.state.articles.length !== this.state.totalResults}
-          loader={this.state.loading && <Spinner />}
+          loader={this.state.loading && <Spinner/>}
         >
           <div className="container">
           <div className="row">
