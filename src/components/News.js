@@ -49,8 +49,8 @@ export class News extends Component {
 
 
   fetchMoreData = async () => {
+    const url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.props.apiKey}&page=${this.state.page+1}&pageSize=${this.props.pageSize}`;
     this.setState({ page: this.state.page + 1 });
-    const url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.props.apiKey}&page=${this.state.page}&pageSize=${this.props.pageSize}`;
     this.setState({ loading: true });
     let data = await fetch(url);
     let parsedData = await data.json()
@@ -64,7 +64,7 @@ export class News extends Component {
   render() {
     return (
       <div className=" container my-4 ">
-        <h2 className="text-center" style={{ margin: '30px 0px', color: "#dee0e3" }}><strong>MediaMatrix</strong> - Top {this.capitalizeFirstLetter(this.props.category)} Headlines</h2>
+        <h2 className="text-center" style={{ margin: '30px 0px', color: "#dee0e3", marginTop: "90px"}}><strong>MediaMatrix</strong> - Top {this.capitalizeFirstLetter(this.props.category)} Headlines</h2>
         {/*{this.state.loading && <Spinner />}*/}
         <InfiniteScroll
           dataLength={this.state.articles.length}
